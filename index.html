@@ -25,7 +25,8 @@
             height: 100%;
 
             font-family: 'Sigmar One', cursive;
-            font-size: 200%;
+            font-size: 60px;
+            line-height: 1.1;
             
             hyphens: auto;
             -webkit-hyphens: auto;
@@ -87,7 +88,7 @@
                 let words = txt.split("\n");
                 // sort the array
                 words = words.sort((a, b) => 0.5 - Math.random());
-                words.unshift("START &raquo;");
+                words.unshift("START &raquo;<div style='font-size:0.5rem'>einfach wischen</div>");
                 // prepare HTML
                 words = words.map(word => `<li class='splide__slide'><span>${word}</span></li>`);
                 // insert HTML
@@ -95,7 +96,8 @@
 
                 // initialize slider
                 new Splide('.splide', {
-                    pagination: false
+                    pagination: false,
+                    arrows: false
                 }).mount();
 
                 document.querySelector(".loader").classList.add("hidden");
