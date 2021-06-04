@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+    <title>Just One</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        .splide {
+            width: 100%;
+            height: 100%;
+
+            font-family: 'Sigmar One', cursive;
+            font-size: 200%;
+            
+            hyphens: auto;
+            -webkit-hyphens: auto;
+
+            background: rgb(236, 217, 187);
+        }
+
+        .splide__track,
+        .splide__list {
+            width: 100%;
+            height: 100%;
+        }
+
+        .splide__slide,
+        .loader {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .splide__slide span {
+            padding: 25px;
+        }
+
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <span>LÄDT...</span>
+    </div>
+    <div class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+        fetch("wordlist/wordlist.txt")
+        .then(res => res.text())
+        .then(txt => {
+                // load text data as array
+                let words = txt.split("\n");
+                // sort the array
+                words = words.sort((a, b) => 0.5 - Math.random());
+                words.unshift("START &raquo;");
+                // prepare HTML
+                words = words.map(word => `<li class='splide__slide'><span>${word}</span></li>`);
+                // insert HTML
+                document.querySelector(".splide__list").innerHTML = words.join("\n");
+
+                // initialize slider
+                new Splide('.splide', {
+                    pagination: false
+                }).mount();
+
+                document.querySelector(".loader").classList.add("hidden");
+            });
+    </script>
+</body>
+</html>
