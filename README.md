@@ -2,7 +2,16 @@
 
 My implementation of Just One, a German word based card game.
 This "game" basically is just showing random words.
+You swipe from right to left on your phone or press the right arrow button to go through the list.
 You can find more information about this game [here](https://asmodee.de/just-one).
+
+## Playing with multiple people
+
+You can play with multiple people by sending them the link that is generated when the page is opened or adding a hashtag at the end of the URL, e.g. `#123456789` or `#thisgameisawesome`.
+Given the same link, the order of words should be the same for everyone.
+This way, each player can go to the same next word.
+Don't forget to catch up if it was your turn. :smile:
+Please remove or modify the hashtags if you want to play a new round with a new word order.
 
 ## Generating Word List
 
